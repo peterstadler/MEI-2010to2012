@@ -38,10 +38,38 @@ declare function local:createAttributeTemplates($old as xs:string*, $new as xs:s
             </xsl:template>
 };
 
-let $pathTo_MEI2012_v2.0.0_mei-all.rng := 'http://music-encoding.googlecode.com/svn/tags/MEI2012_v2.0.0/schemata/mei-all.rng'
-let $pathTo_MEI_release_2010-05_folder := '/Users/pstadler/Downloads/rng2' (: Download files from http://music-encoding.googlecode.com/svn/tags/MEI_release_2010-05/schemata/rng/ :)
 
-let $mei2010 := collection(concat($pathTo_MEI_release_2010-05_folder, '?recurse=yes;select=*.rng'))
+let $mei2010-schema-files := (
+    'analysis_Module.rng',
+    'cmnOrnaments_Module.rng',
+    'cmn_Module.rng',
+    'coConstraints.rng',
+    'corpus_Module.rng',
+    'critapp_Module.rng',
+    'datatypes.rng',
+    'defaultClassDecls.rng',
+    'edittrans_Module.rng',
+    'facsimile_Module.rng',
+    'figtable_Module.rng',
+    'harmony_Module.rng',
+    'header_Module.rng',
+    'linkalign_Module.rng',
+    'lyrics_Module.rng',
+    'mei-all.rng',
+    'mensural_Module.rng',
+    'midi_Module.rng',
+    'namesdates_Module.rng',
+    'neumes_Module.rng',
+    'ptrref_Module.rng',
+    'shared_Module.rng',
+    'tablature_Module.rng',
+    'text_Module.rng',
+    'usersymbols_Module.rng'
+)
+let $pathTo_MEI2012_v2.0.0_mei-all.rng := 'http://music-encoding.googlecode.com/svn/tags/MEI2012_v2.0.0/schemata/mei-all.rng'
+let $pathTo_MEI_release_2010-05_folder := 'http://music-encoding.googlecode.com/svn/tags/MEI_release_2010-05/schemata/rng/'
+
+let $mei2010 := for $file in $mei2010-schema-files return doc(concat($pathTo_MEI_release_2010-05_folder, $file))
 let $mei2012 := doc($pathTo_MEI2012_v2.0.0_mei-all.rng)
 return 
     <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.music-encoding.org/ns/mei" xmlns:mei="http://www.music-encoding.org/ns/mei" version="2.0">
