@@ -7,7 +7,7 @@ Transforming the 2010-05 schema version of the [Music Encoding Initiative](http:
 Contents
 --------
 
-* createXSLT.xql Ð XQuery Script to automatically generate MEI-2010to2012.xsl by comparing old and new element names and matching those where only capitalization differs.
+* createXSLT.xql Ð XQuery Script to automatically generate MEI-2010to2012.xsl by comparing old and new element (and attribute) names and matching those where only capitalization differs.
 * MEI-2010to2012.xsl Ð XSLT Stylesheet to transform your MEI 2010-05 files to the 2012 (2.0.0) version
 
 
@@ -37,3 +37,5 @@ These include:
 * @label.full
 * @mediacontent
 * @medialength
+
+I'm happy for any advice on how to transform these É
