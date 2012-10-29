@@ -7,15 +7,22 @@ Transforming the 2010-05 schema version of the [Music Encoding Initiative](http:
 Contents
 --------
 
-* createXSLT.xql Ð XQuery Script to automatically generate MEI-2010to2012.xsl by comparing old and new element (and attribute) names and matching those where only capitalization differs.
-* MEI-2010to2012.xsl Ð XSLT Stylesheet to transform your MEI 2010-05 files to the 2012 (2.0.0) version
+* README.md: this file
+* createXSLT.xql: XQuery Script to automatically generate MEI-2010to2012.xsl by comparing old and new element (and attribute) names and matching those where only capitalization differs.
+* MEI-2010to2012.xsl: XSLT Stylesheet to transform your MEI 2010-05 files to the 2012 (2.0.0) version
 
 
-Known restrictions
-------------------
+Usage
+-----
 
-Elements and attributes from the 2010-05 version that could not be matched automatically are marked in the Stylesheet with a (xsl:)comment.
-These include:
+Apply the stylesheet MEI-2010to2012.xsl to your MEI 2010-05 files. 
+(Tested with Saxon-HE 9.)
+
+
+Manually modified templates
+---------------------------
+
+Elements and attributes from the 2010-05 version that could not be matched automatically are:
 * accessdesc
 * altmeiid
 * blockquote
@@ -38,4 +45,15 @@ These include:
 * @mediacontent
 * @medialength
 
-I'm happy for any advice on how to transform these É
+Thanks to Andrew Hankinson those could be resolved!
+
+
+Known restrictions
+------------------
+
+Some content models have changed so you might need to apply further tweaks to your data:
+
+* altmeiid: this becomes _altID_ with a tighter content model, only allowing <lb>, <rend>, <stack> and text().
+* clefchange: this becomes _clef_ and doesn't support @tstamp, @staff or @layer any longer. 
+* fingerprint: use of fingerprint deprecated.
+* profiledesc: this becomes _workDesc_ and thereby introduces a slightly different semantic. All child elements can be matched to their 2012 counterparts, though.
