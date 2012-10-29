@@ -13,98 +13,116 @@
     </xsl:template>
     <xsl:template match="mei:accessdesc">
         <xsl:comment>Transformation for element "accessdesc" needs tweaking</xsl:comment>
-        <xsl:copy>
-            <xsl:apply-templates select="@* | node()"/>
-        </xsl:copy>
+        <xsl:apply-templates select="@* | node()"/>
     </xsl:template>
+
     <xsl:template match="mei:acqsource">
         <xsl:element name="acqSource">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:addressline">
         <xsl:element name="addrLine">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:altmeiid">
-        <xsl:comment>Transformation for element "altmeiid" needs tweaking</xsl:comment>
-        <xsl:copy>
-            <xsl:apply-templates select="@* | node()"/>
-        </xsl:copy>
+        <xsl:element name="altId">
+            <xsl:apply-templates select="@*"/>
+            <xsl:comment>Transformation for element "altmeiid" needs tweaking</xsl:comment>
+            <xsl:apply-templates select="node()"/>
+        </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:anchoredtext">
         <xsl:element name="anchoredText">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:appinfo">
         <xsl:element name="appInfo">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:barline">
         <xsl:element name="barLine">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:beamspan">
         <xsl:element name="beamSpan">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:beatrpt">
         <xsl:element name="beatRpt">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:blockquote">
-        <xsl:comment>Transformation for element "blockquote" needs tweaking</xsl:comment>
-        <xsl:copy>
+        <xsl:element name="quote">
             <xsl:apply-templates select="@* | node()"/>
-        </xsl:copy>
+        </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:btrem">
         <xsl:element name="bTrem">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:changedesc">
         <xsl:element name="changeDesc">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:chanpr">
         <xsl:element name="chanPr">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:chorddef">
         <xsl:element name="chordDef">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:chordmember">
         <xsl:element name="chordMember">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:chordtable">
         <xsl:element name="chordTable">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:classcode">
         <xsl:element name="classCode">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:clefchange">
-        <xsl:comment>Transformation for element "clefchange" needs tweaking</xsl:comment>
-        <xsl:copy>
-            <xsl:apply-templates select="@* | node()"/>
-        </xsl:copy>
+        <xsl:element name="clef">
+            <xsl:apply-templates select="@* except (@tstamp, @staff, @layer)"/>
+            <xsl:if test="@tstamp or @staff or @layer">
+                <xsl:comment>attributes @tstamp, @staff, @layer not longer supported on mei:clef</xsl:comment>
+            </xsl:if>
+        </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:corpname">
         <xsl:element name="corpName">
             <xsl:apply-templates select="@* | node()"/>
@@ -130,55 +148,59 @@
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:exhibithist">
-        <xsl:comment>Transformation for element "exhibithist" needs tweaking</xsl:comment>
-        <xsl:copy>
+        <xsl:element name="exhibHist">
             <xsl:apply-templates select="@* | node()"/>
-        </xsl:copy>
+        </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:extptr">
-        <xsl:comment>Transformation for element "extptr" needs tweaking</xsl:comment>
-        <xsl:copy>
+        <xsl:element name="ptr">
             <xsl:apply-templates select="@* | node()"/>
-        </xsl:copy>
+        </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:extref">
-        <xsl:comment>Transformation for element "extref" needs tweaking</xsl:comment>
-        <xsl:copy>
+        <xsl:element name="ref">
             <xsl:apply-templates select="@* | node()"/>
-        </xsl:copy>
+        </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:figdesc">
         <xsl:element name="figDesc">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:filedesc">
         <xsl:element name="fileDesc">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:fingerprint">
-        <xsl:comment>Transformation for element "fingerprint" needs tweaking</xsl:comment>
-        <xsl:copy>
-            <xsl:apply-templates select="@* | node()"/>
-        </xsl:copy>
+        <xsl:comment>use of mei:fingerprint deprecated.</xsl:comment>
     </xsl:template>
+
     <xsl:template match="mei:ftrem">
         <xsl:element name="fTrem">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:geogname">
         <xsl:element name="geogName">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:grpsym">
         <xsl:element name="grpSym">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:halfmrpt">
         <xsl:element name="halfmRpt">
             <xsl:apply-templates select="@* | node()"/>
@@ -214,23 +236,19 @@
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
-    <xsl:template match="mei:keychange">
-        <xsl:comment>Transformation for element "keychange" needs tweaking</xsl:comment>
-        <xsl:copy>
-            <xsl:apply-templates select="@* | node()"/>
-        </xsl:copy>
-    </xsl:template>
+
     <xsl:template match="mei:keysig">
         <xsl:element name="keySig">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:keywords">
-        <xsl:comment>Transformation for element "keywords" needs tweaking</xsl:comment>
-        <xsl:copy>
+        <xsl:element name="termList">
             <xsl:apply-templates select="@* | node()"/>
-        </xsl:copy>
+        </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:langusage">
         <xsl:element name="langUsage">
             <xsl:apply-templates select="@* | node()"/>
@@ -301,6 +319,7 @@
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:periodname">
         <xsl:element name="periodName">
             <xsl:apply-templates select="@* | node()"/>
@@ -316,166 +335,202 @@
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:pgfoot1">
-        <xsl:comment>Transformation for element "pgfoot1" needs tweaking</xsl:comment>
-        <xsl:copy>
+        <xsl:element name="pgFoot">
             <xsl:apply-templates select="@* | node()"/>
-        </xsl:copy>
+        </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:pgfoot2">
         <xsl:element name="pgFoot2">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:pghead1">
-        <xsl:comment>Transformation for element "pghead1" needs tweaking</xsl:comment>
-        <xsl:copy>
+        <xsl:element name="pgHead">
             <xsl:apply-templates select="@* | node()"/>
-        </xsl:copy>
+        </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:pghead2">
         <xsl:element name="pgHead2">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:physdesc">
         <xsl:element name="physDesc">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:physloc">
         <xsl:element name="physLoc">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:physmedium">
         <xsl:element name="physMedium">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:profiledesc">
-        <xsl:comment>Transformation for element "profiledesc" needs tweaking</xsl:comment>
-        <xsl:copy>
-            <xsl:apply-templates select="@* | node()"/>
-        </xsl:copy>
+        <xsl:element name="workDesc">
+            <xsl:apply-templates select="@*"/>
+            <xsl:element name="work">
+                <xsl:if test="mei:creation or mei:eventlist">
+                    <xsl:element name="history">
+                        <xsl:apply-templates select="mei:creation | mei:eventlist"/>
+                    </xsl:element>
+                </xsl:if>
+                <xsl:apply-templates select="mei:langusage"/>
+                <xsl:apply-templates select="mei:classification"/>
+            </xsl:element>
+        </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:projectdesc">
         <xsl:element name="projectDesc">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:pubstmt">
         <xsl:element name="pubStmt">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:respstmt">
         <xsl:element name="respStmt">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:revisiondesc">
         <xsl:element name="revisionDesc">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:samplingdecl">
         <xsl:element name="samplingDecl">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:scoredef">
         <xsl:element name="scoreDef">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:seqnum">
         <xsl:element name="seqNum">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:seriesstmt">
         <xsl:element name="seriesStmt">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:sourcedesc">
         <xsl:element name="sourceDesc">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:staffdef">
         <xsl:element name="staffDef">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:staffgrp">
         <xsl:element name="staffGrp">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:stdvals">
         <xsl:element name="stdVals">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:stylename">
         <xsl:element name="styleName">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:symboldef">
         <xsl:element name="symbolDef">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:symboltable">
         <xsl:element name="symbolTable">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:sysreq">
         <xsl:element name="sysReq">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:titlepage">
         <xsl:element name="titlePage">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:titlestmt">
         <xsl:element name="titleStmt">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:treatmenthist">
-        <xsl:comment>Transformation for element "treatmenthist" needs tweaking</xsl:comment>
-        <xsl:copy>
+        <xsl:element name="treatHist">
             <xsl:apply-templates select="@* | node()"/>
-        </xsl:copy>
+        </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:treatmentsched">
-        <xsl:comment>Transformation for element "treatmentsched" needs tweaking</xsl:comment>
-        <xsl:copy>
+        <xsl:element name="treatSched">
             <xsl:apply-templates select="@* | node()"/>
-        </xsl:copy>
+        </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:trkname">
         <xsl:element name="trkName">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:tupletspan">
         <xsl:element name="tupletSpan">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="mei:userestrict">
         <xsl:element name="useRestrict">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xsl:template match="@complete"><!--to do--></xsl:template>
     <xsl:template match="@entityref"><!--to do--></xsl:template>
     <xsl:template match="@href"><!--to do--></xsl:template>
