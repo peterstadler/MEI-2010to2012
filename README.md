@@ -16,7 +16,8 @@ Usage
 -----
 
 Apply the stylesheet MEI-2010to2012.xsl to your MEI 2010-05 files. 
-(Tested with Saxon-HE 9.)
+Set the parameter $warning to false() if you want to supress all warnings.
+(Tested with Saxon-HE 9)
 
 
 Manually modified templates
