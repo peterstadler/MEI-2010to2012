@@ -2,7 +2,9 @@
 <xsl:stylesheet xmlns:mei="http://www.music-encoding.org/ns/mei"
     xmlns="http://www.music-encoding.org/ns/mei" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     version="2.0">
-    <xsl:output indent="no" encoding="UTF-8" method="xml" omit-xml-declaration="no"/>
+    <xsl:output indent="yes" encoding="UTF-8" method="xml" omit-xml-declaration="no"/>
+    <xsl:param name="warning" select="true()"/>
+    
     <xsl:template match="/">
         <xsl:apply-templates/>
     </xsl:template>
@@ -12,8 +14,9 @@
         </xsl:copy>
     </xsl:template>
     <xsl:template match="mei:accessdesc">
-        <xsl:comment>Transformation for element "accessdesc" needs tweaking</xsl:comment>
-        <xsl:apply-templates select="@* | node()"/>
+        <xsl:element name="accessRestrict">
+            <xsl:apply-templates select="@* | node()"/>
+        </xsl:element>
     </xsl:template>
 
     <xsl:template match="mei:acqsource">
@@ -31,7 +34,9 @@
     <xsl:template match="mei:altmeiid">
         <xsl:element name="altId">
             <xsl:apply-templates select="@*"/>
-            <xsl:comment>Transformation for element "altmeiid" needs tweaking</xsl:comment>
+            <xsl:if test="$warning">
+                <xsl:comment>Transformation for element "altmeiid" needs tweaking</xsl:comment>
+            </xsl:if>
             <xsl:apply-templates select="node()"/>
         </xsl:element>
     </xsl:template>
@@ -118,7 +123,9 @@
         <xsl:element name="clef">
             <xsl:apply-templates select="@* except (@tstamp, @staff, @layer)"/>
             <xsl:if test="@tstamp or @staff or @layer">
-                <xsl:comment>attributes @tstamp, @staff, @layer not longer supported on mei:clef</xsl:comment>
+                <xsl:if test="$warning">
+                    <xsl:comment>attributes @tstamp, @staff, @layer not longer supported on mei:clef</xsl:comment>
+                </xsl:if>
             </xsl:if>
         </xsl:element>
     </xsl:template>
@@ -180,7 +187,9 @@
     </xsl:template>
 
     <xsl:template match="mei:fingerprint">
-        <xsl:comment>use of mei:fingerprint deprecated.</xsl:comment>
+        <xsl:if test="$warning">
+            <xsl:comment>use of mei:fingerprint deprecated.</xsl:comment>
+        </xsl:if>
     </xsl:template>
 
     <xsl:template match="mei:ftrem">
