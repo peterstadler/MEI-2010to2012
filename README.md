@@ -16,7 +16,7 @@ Usage
 -----
 
 Apply the stylesheet MEI-2010to2012.xsl to your MEI 2010-05 files. 
-Set the parameter $warning to false() if you want to supress all warnings.
+Set the parameter `$warning` to `false()` if you want to supress all warnings.
 (Tested with Saxon-HE 9)
 
 
@@ -24,6 +24,7 @@ Manually modified templates
 ---------------------------
 
 Elements and attributes from the 2010-05 version that could not be matched automatically are:
+
 * accessdesc
 * altmeiid
 * blockquote
@@ -54,7 +55,7 @@ Known restrictions
 
 Some content models have changed so you might need to apply further tweaks to your data:
 
-* '&lt;altmeiid&gt;': this becomes '&lt;altID&gt;' with a tighter content model, only allowing '&lt;lb&gt;', '&lt;rend&gt;', '&lt;stack&gt;' and _text()_.
-* '&lt;clefchange&gt;': this becomes '&lt;clef_ and doesn't support @tstamp, @staff or @layer any longer. 
-* '&lt;fingerprint&gt;': use of '&lt;fingerprint&gt;' deprecated.
-* '&lt;profiledesc&gt;': this becomes '&lt;workDesc&gt;' and thereby introduces a slightly different semantic. All child elements can be matched to their 2012 counterparts, though.
+* `<altmeiid>`: this becomes `<altID>` with a tighter content model, only allowing `<lb>`, `<rend>`, `<stack>` and _text()_.
+* `<clefchange>`: this becomes `<clef_ and doesn't support @tstamp, @staff or @layer any longer. 
+* `<fingerprint>`: use of `<fingerprint>` deprecated.
+* `<profiledesc>`: this becomes `<workDesc>` and thereby introduces a slightly different semantic. All child elements can be matched to their 2012 counterparts, though.
