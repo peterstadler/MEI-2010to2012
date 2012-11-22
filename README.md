@@ -56,6 +56,6 @@ Known restrictions
 Some content models have changed so you might need to apply further tweaks to your data:
 
 * `<altmeiid>`: this becomes `<altID>` with a tighter content model, only allowing `<lb>`, `<rend>`, `<stack>` and _text()_.
-* `<clefchange>`: this becomes `<clef_ and doesn't support @tstamp, @staff or @layer any longer. 
+* `<clefchange>`: this becomes `<clef>` and doesn't support @tstamp, @staff or @layer any longer. 
 * `<fingerprint>`: use of `<fingerprint>` deprecated.
 * `<profiledesc>`: this becomes `<workDesc>` and thereby introduces a slightly different semantic. All child elements can be matched to their 2012 counterparts, though.
