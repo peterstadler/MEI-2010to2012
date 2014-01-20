@@ -59,3 +59,9 @@ Some content models have changed so you might need to apply further tweaks to yo
 * `<clefchange>`: this becomes `<clef>` and doesn't support @tstamp, @staff or @layer any longer. 
 * `<fingerprint>`: use of `<fingerprint>` deprecated.
 * `<profiledesc>`: this becomes `<workDesc>` and thereby introduces a slightly different semantic. All child elements can be matched to their 2012 counterparts, though.
+
+
+License
+-------
+
+This work is available under dual license: [BSD 2-Clause](http://opensource.org/licenses/BSD-2-Clause) and [Creative Commons Attribution 3.0 Unported License (CC BY 3.0)](http://creativecommons.org/licenses/by/3.0/)
